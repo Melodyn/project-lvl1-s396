@@ -8,5 +8,13 @@
             "email": "samelodyn@gmail.com"
         }
     ],
-    "require": {}
+    "autoload": {
+	    "psr-4": {
+		    "Php\\Package\\": "src",
+		    "Php\\Package\\Tests\\": "tests"
+	    }
+    },
+    "require": {
+        "wp-cli/php-cli-tools": "^0.11.10"
+    }
 }
