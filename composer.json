@@ -1,0 +1,12 @@
+{
+    "name": "melodyn/hexlet-project1",
+    "bin": "bin/barin-games",
+    "description": "Brain games",
+    "authors": [
+        {
+            "name": "Melodyn",
+            "email": "samelodyn@gmail.com"
+        }
+    ],
+    "require": {}
+}
