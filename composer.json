@@ -1,20 +1,14 @@
 {
     "name": "melodyn/hexlet-project1",
-    "bin": "bin/barin-games",
+    "bin": ["bin/brain-games"],
     "description": "Brain games",
+    "keywords": ["hexlet", "hexlet project", "brain games"],
     "authors": [
         {
             "name": "Melodyn",
             "email": "samelodyn@gmail.com"
         }
     ],
-    "autoload": {
-	    "psr-4": {
-		    "Php\\Package\\": "src",
-		    "Php\\Package\\Tests\\": "tests"
-	    }
-    },
     "require": {
-        "wp-cli/php-cli-tools": "^0.11.10"
     }
 }
