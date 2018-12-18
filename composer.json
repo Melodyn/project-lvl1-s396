@@ -2,13 +2,21 @@
     "name": "melodyn/hexlet-project1",
     "bin": ["bin/brain-games"],
     "description": "Brain games",
-    "keywords": ["hexlet", "hexlet project", "brain games"],
+    "keywords": [
+        "hexlet",
+        "hexlet project",
+        "brain games"
+    ],
     "authors": [
         {
             "name": "Melodyn",
             "email": "samelodyn@gmail.com"
         }
     ],
+    "autoload": {
+        "files": ["src/Cli.php"]
+    },
     "require": {
+        "wp-cli/php-cli-tools": "^0.11.11"
     }
 }
