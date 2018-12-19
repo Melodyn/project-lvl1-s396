@@ -12,7 +12,8 @@ function getQuestion()
     return "$num1 $num2";
 }
 
-function gcd($a, $b) {
+function gcd($a, $b)
+{
     return ($a % $b) ? gcd($b, $a % $b) : $b;
 }
 
