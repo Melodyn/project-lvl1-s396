@@ -19,6 +19,7 @@
     "autoload": {
         "files": [
             "src/Cli.php",
+            "src/GameDriver.php",
             "src/Games/Even.php"
         ]
     },

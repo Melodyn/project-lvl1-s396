@@ -14,10 +14,10 @@ function getCorrectAnswer(int $hiddenNumber)
     return $hiddenNumberIsEven ? 'yes' : 'no';
 }
 
-function start($gameParams)
+function start()
 {
     $correctAnswersCount = 0;
-    $maxCorrectAnswersCount = $gameParams === 'default' ? 3 : $gameParams;
+    $maxCorrectAnswersCount = 3;
 
     $gameisEnd = function ($userAnswerIsCorrect) use (&$correctAnswersCount, $maxCorrectAnswersCount) {
         if ($userAnswerIsCorrect) {
