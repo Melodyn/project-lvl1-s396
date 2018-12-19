@@ -2,6 +2,8 @@
 
 namespace BrainGames\Games\Calc;
 
+const GAME_DESCRIPTION = 'What is the result of the expression?';
+
 function getQuestion()
 {
     $operators = ['+', '-', '*'];
@@ -38,4 +40,11 @@ function calculate(array $expression)
 function getCorrectAnswer(string $expression)
 {
     return calculate(explode(' ', $expression));
+}
+
+function run()
+{
+    \BrainGames\GameDriver\run(function ($handlerName, $data = null) {
+        return ($handlerName === 'getQuestion') ? getQuestion() : getCorrectAnswer($data);
+    }, GAME_DESCRIPTION);
 }
