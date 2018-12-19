@@ -14,9 +14,9 @@ function getGame($gameName)
     $pathToGame = GAMES_MAP[$gameName];
     
     return [
-        $pathToGame.'\start',
-        $pathToGame.'\getQuestion',
-        $pathToGame.'\getCorrectAnswer'
+        $pathToGame . '\start',
+        $pathToGame . '\getQuestion',
+        $pathToGame . '\getCorrectAnswer'
     ];
 }
 
@@ -34,7 +34,7 @@ function run($gameName = '', $gameDescription = '', $gameParams = 'default')
 
         do {
             $question = $getQuestion();
-            line('Question: ' .$question);
+            line('Question: ' . $question);
 
             $userAnswer = prompt('Your answer');
             $correctAnswer = $getCorrectAnswer($question);
