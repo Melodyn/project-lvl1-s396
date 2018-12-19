@@ -16,3 +16,4 @@
 * Brain games: [brain-games](https://asciinema.org/a/217588)
 * Проверка на чётность: [even](https://asciinema.org/a/217589)
 * Калькулятор: [calc](https://asciinema.org/a/217590)
+* НОД: [gcd](https://asciinema.org/a/217622)
