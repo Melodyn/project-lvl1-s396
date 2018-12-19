@@ -2,9 +2,6 @@
 
 namespace BrainGames\Games\Even;
 
-use function \cli\line;
-use function \cli\prompt;
-
 function getQuestion()
 {
     return rand();
