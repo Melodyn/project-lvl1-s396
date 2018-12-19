@@ -14,10 +14,13 @@
         }
     ],
     "autoload": {
-        "files": ["src/Cli.php"]
+        "files": [
+            "src/Cli.php",
+            "src/Games/Even.php"
+        ]
     },
     "scripts": {
-        "phpcs": "./vendor/bin/phpcs"
+        "phpcs": "phpcs"
     },
     "require": {
         "wp-cli/php-cli-tools": "^0.11.11"
