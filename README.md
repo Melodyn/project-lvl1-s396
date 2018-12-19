@@ -5,5 +5,5 @@
 
 ## Аскинема:
 
-Brain games: [brain-games](asciinema/brain-games.cast)
-Проверка на чётность: [brain-games](asciinema/even.cast)
+* Brain games: [brain-games](asciinema/brain-games.cast)
+* Проверка на чётность: [brain-games](asciinema/even.cast)
