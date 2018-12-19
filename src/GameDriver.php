@@ -9,6 +9,7 @@ const MAX_CORRECT_ANSWERS_COUNT = 3;
 
 const GAMES_MAP = [
     'even' => '\BrainGames\Games\Even',
+    'calc' => '\BrainGames\Games\Calc',
 ];
 
 function getGame($gameName)
@@ -16,7 +17,6 @@ function getGame($gameName)
     $pathToGame = GAMES_MAP[$gameName];
     
     return [
-        $pathToGame . '\start',
         $pathToGame . '\getQuestion',
         $pathToGame . '\getCorrectAnswer'
     ];
@@ -60,7 +60,7 @@ function run(callable $cli, string $gameName, string $userName)
 
         $userAnswer = sendRequest($cli, 'Your answer');
         $correctAnswer = $getCorrectAnswer($question);
-        $userAnswerIsCorrect = strtolower($userAnswer) === $correctAnswer;
+        $userAnswerIsCorrect = strtolower($userAnswer) === strtolower($correctAnswer);
         $onAnswerMessage = $userAnswerIsCorrect ?
             'Correct!' :
             "'{$userAnswer}' is wrong answer ;(. Correct answer was '{$correctAnswer}'.";
