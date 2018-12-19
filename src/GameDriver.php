@@ -2,24 +2,28 @@
 
 namespace BrainGames\GameDriver;
 
-use function \cli\line;
-use function \cli\prompt;
+use function \BrainGames\Cli\request as sendRequest;
+use function \BrainGames\Cli\response as sendResponse;
+
+const HELLO_MESSAGE = 'Welcome to the Brain Game!';
+const NAME_ASK_MESSAGE = 'May I have your name?';
 
 const MAX_CORRECT_ANSWERS_COUNT = 3;
 
-const GAMES_MAP = [
-    'even' => '\BrainGames\Games\Even',
-    'calc' => '\BrainGames\Games\Calc',
-];
-
-function getGame($gameName)
+function sayHi($gameDiscription)
 {
-    $pathToGame = GAMES_MAP[$gameName];
-    
-    return [
-        $pathToGame . '\getQuestion',
-        $pathToGame . '\getCorrectAnswer'
-    ];
+    sendResponse(HELLO_MESSAGE);
+    sendResponse($gameDiscription);
+}
+
+function getUsername()
+{
+    return sendRequest(NAME_ASK_MESSAGE);
+}
+
+function greetUser($userName)
+{
+    sendResponse("Hello, $userName!");
 }
 
 function process()
@@ -37,35 +41,27 @@ function process()
     return $gameisEnd;
 }
 
-function sendRequest(callable $cli, string $message)
+function run(callable $handler, $gameDiscription)
 {
-    return $cli($message, true);
-}
+    sayHi($gameDiscription);
+    $userName = getUsername();
+    greetUser($userName);
 
-function sendResponse(callable $cli, string $message)
-{
-    $cli($message, false);
-    return;
-}
-
-function run(callable $cli, string $gameName, string $userName)
-{
-    [$getQuestion, $getCorrectAnswer] = getGame($gameName);
     $nextStep = process();
     $gameIsEnd = false;
 
     do {
-        $question = $getQuestion();
-        sendResponse($cli, 'Question: ' . $question);
+        $question = $handler('getQuestion');
+        sendResponse('Question: ' . $question);
 
-        $userAnswer = sendRequest($cli, 'Your answer');
-        $correctAnswer = $getCorrectAnswer($question);
+        $userAnswer = sendRequest('Your answer');
+        $correctAnswer = $handler('getCorrectAnswer', $question);
         $userAnswerIsCorrect = strtolower($userAnswer) === strtolower($correctAnswer);
         $onAnswerMessage = $userAnswerIsCorrect ?
             'Correct!' :
             "'{$userAnswer}' is wrong answer ;(. Correct answer was '{$correctAnswer}'.";
 
-        sendResponse($cli, $onAnswerMessage);
+        sendResponse($onAnswerMessage);
 
         $gameIsEnd = $nextStep($userAnswerIsCorrect);
     } while (!$gameIsEnd);
@@ -74,5 +70,5 @@ function run(callable $cli, string $gameName, string $userName)
         "Congratulations, {$userName}!" :
         "Let's try again, {$userName}!";
 
-    sendResponse($cli, $engGameMessage);
+    sendResponse($engGameMessage);
 }

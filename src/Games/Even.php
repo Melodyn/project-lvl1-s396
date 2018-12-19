@@ -2,14 +2,26 @@
 
 namespace BrainGames\Games\Even;
 
+const GAME_DESCRIPTION = 'Answer "yes" if number even otherwise answer "no".';
+
 function getQuestion()
 {
     return rand();
 }
 
+function isEven($num)
+{
+    return ($num % 2) === 0;
+}
+
 function getCorrectAnswer(int $hiddenNumber)
 {
-    $hiddenNumberIsEven = ($hiddenNumber % 2) === 0;
+    return isEven($hiddenNumber) ? 'yes' : 'no';
+}
 
-    return $hiddenNumberIsEven ? 'yes' : 'no';
+function run()
+{
+    \BrainGames\GameDriver\run(function($handlerName, $data = null) {
+        return $handlerName === 'getQuestion' ? getQuestion() : getCorrectAnswer($data);
+    }, GAME_DESCRIPTION);
 }
