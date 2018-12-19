@@ -21,7 +21,7 @@ function getCorrectAnswer(int $hiddenNumber)
 
 function run()
 {
-    \BrainGames\GameDriver\run(function($handlerName, $data = null) {
+    \BrainGames\GameDriver\run(function ($handlerName, $data = null) {
         return $handlerName === 'getQuestion' ? getQuestion() : getCorrectAnswer($data);
     }, GAME_DESCRIPTION);
 }
