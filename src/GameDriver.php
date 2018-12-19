@@ -50,7 +50,7 @@ function sendResponse(callable $cli, string $message)
 
 function run(callable $cli, string $gameName, string $userName)
 {
-    [$start, $getQuestion, $getCorrectAnswer] = getGame($gameName);
+    [$getQuestion, $getCorrectAnswer] = getGame($gameName);
     $nextStep = process();
     $gameIsEnd = false;
 
