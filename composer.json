@@ -1,6 +1,9 @@
 {
     "name": "melodyn/hexlet-project1",
-    "bin": ["bin/brain-games"],
+    "bin": [
+        "bin/brain-games",
+        "bin/brain-even"
+    ],
     "description": "Brain games",
     "keywords": [
         "hexlet",

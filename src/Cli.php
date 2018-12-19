@@ -14,24 +14,42 @@ function getGame($gameName)
     $pathToGame = GAMES_MAP[$gameName];
     
     return [
-        $pathToGame.'\init',
         $pathToGame.'\start',
-        $pathToGame.'\end'
+        $pathToGame.'\getQuestion',
+        $pathToGame.'\getCorrectAnswer'
     ];
 }
 
-function run($gameName = '')
+function run($gameName = '', $gameDescription = '', $gameParams = 'default')
 {
     line('Welcome to the Brain Game!');
+    line($gameDescription);
+    $userName = prompt('May I have your name?');
+    line("Hello, %s!", $userName);
     
-    if (empty($gameName)) {
-        $name = prompt('May I have your name?');
-        line("Hello, %s!", $name);
-    } else {
-        [$init, $start, $end] = getGame($gameName);
-        
-        $gameParams = $init();
-        $gameResult = $start($gameParams);
-        $end($gameParams, $gameResult);
+    if (!empty($gameName)) {
+        [$start, $getQuestion, $getCorrectAnswer] = getGame($gameName);
+        $nextStep = $start($gameParams);
+        $gameIsEnd = false;
+
+        do {
+            $question = $getQuestion();
+            line('Question: ' .$question);
+
+            $userAnswer = prompt('Your answer');
+            $correctAnswer = $getCorrectAnswer($question);
+            $userAnswerIsCorrect = strtolower($userAnswer) === $correctAnswer;
+            $onAnswerMessage = $userAnswerIsCorrect ?
+                'Correct!' :
+                "'{$userAnswer}' is wrong answer ;(. Correct answer was '{$correctAnswer}'.";
+
+            line($onAnswerMessage);
+
+            $gameIsEnd = $nextStep($userAnswerIsCorrect);
+        } while (!$gameIsEnd);
+
+        $engGameMessage = $userAnswerIsCorrect ? "Congratulations, {$userName}!" : "Let's try again, {$userName}!";
+
+        line($engGameMessage);
     }
 }
