@@ -2,8 +2,17 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/eb7a5ac19bba0963f16d/maintainability)](https://codeclimate.com/github/Melodyn/project-lvl1-s396/maintainability) [![Build Status](https://travis-ci.org/Melodyn/project-lvl1-s396.svg?branch=master)](https://travis-ci.org/Melodyn/project-lvl1-s396)
 
+Ещё один шаг на пути к всемогуществу.
+
+## Установка
+
+1. Скачать пакет: https://packagist.org/packages/melodyn/hexlet-project1
+2. ?????
+3. PROFIT!
+
 
 ## Аскинема:
 
-* Brain games: [brain-games](asciinema/brain-games.cast)
-* Проверка на чётность: [brain-games](asciinema/even.cast)
+* Brain games: [brain-games](https://asciinema.org/a/217588)
+* Проверка на чётность: [even](https://asciinema.org/a/217589)
+* Калькулятор: [calc](https://asciinema.org/a/217590)
