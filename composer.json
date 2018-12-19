@@ -2,7 +2,8 @@
     "name": "melodyn/hexlet-project1",
     "bin": [
         "bin/brain-games",
-        "bin/brain-even"
+        "bin/brain-even",
+        "bin/brain-calc"
     ],
     "description": "Brain games",
     "keywords": [
@@ -20,7 +21,8 @@
         "files": [
             "src/Cli.php",
             "src/GameDriver.php",
-            "src/Games/Even.php"
+            "src/Games/Even.php",
+            "src/Games/Calc.php"
         ]
     },
     "scripts": {
