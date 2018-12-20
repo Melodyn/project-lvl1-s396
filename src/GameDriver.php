@@ -58,4 +58,5 @@ function run(callable $getGameAttributes, string $gameDiscription)
         "Let's try again, {$userName}!";
 
     line($engGameMessage);
+    return;
 }
