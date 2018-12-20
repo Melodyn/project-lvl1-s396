@@ -40,7 +40,7 @@ function run(callable $getGameAttributes, string $gameDiscription)
     do {
         ['question' => $question, 'answer' => $correctAnswer] = $getGameAttributes();
         
-        line('Question: ' . $question);        
+        line('Question: ' . $question);
         $userAnswer = prompt('Your answer');
         $userAnswerIsCorrect = strtolower($userAnswer) === strtolower($correctAnswer);
 
