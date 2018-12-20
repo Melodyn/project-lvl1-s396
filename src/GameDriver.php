@@ -33,25 +33,24 @@ function run(callable $getGameAttributes, string $gameDiscription)
     sayHi($gameDiscription);
     $userName = getUsername();
     greetUser($userName);
+    $userAnswerIsCorrect = true;
 
-    $correctAnswersCount = 0;
-    $gameIsEnd = false;
-
-    do {
+    for ($correctAnswersCount = 0; $correctAnswersCount < MAX_CORRECT_ANSWERS_COUNT; $correctAnswersCount += 1) {
         ['question' => $question, 'answer' => $correctAnswer] = $getGameAttributes();
-        
+
         line('Question: ' . $question);
         $userAnswer = prompt('Your answer');
         $userAnswerIsCorrect = strtolower($userAnswer) === strtolower($correctAnswer);
 
-        $correctAnswersCount = (!$userAnswerIsCorrect) ? $correctAnswersCount : $correctAnswersCount + 1;
         $onAnswerMessage = $userAnswerIsCorrect ?
             'Correct!' :
             "'{$userAnswer}' is wrong answer ;(. Correct answer was '{$correctAnswer}'.";
         line($onAnswerMessage);
 
-        $gameIsEnd = !$userAnswerIsCorrect || ($correctAnswersCount >= MAX_CORRECT_ANSWERS_COUNT);
-    } while (!$gameIsEnd);
+        if (!$userAnswerIsCorrect) {
+            break;
+        }
+    }
 
     $engGameMessage = $userAnswerIsCorrect ?
         "Congratulations, {$userName}!" :

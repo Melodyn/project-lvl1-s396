@@ -8,18 +8,7 @@ const GAME_DESCRIPTION = 'What is the result of the expression?';
 
 const OPERATORS = ['+', '-', '*'];
 
-function getQuestion()
-{
-    $operatorIndex = rand(0, (count(OPERATORS) - 1));
-    $operator = OPERATORS[$operatorIndex];
-
-    $num1 = rand(0, 10);
-    $num2 = rand(0, 10);
-
-    return "$num1 $operator $num2";
-}
-
-function calculate(array $expression)
+function calculate(int $num1, int $num2, string $operator)
 {
     $operations = [
         '+' => function ($num1, $num2) {
@@ -33,30 +22,47 @@ function calculate(array $expression)
         },
     ];
 
-    [$num1, $operator, $num2] = $expression;
-
     $handler = $operations[$operator];
 
     return $handler($num1, $num2);
 }
 
-function getAnswer(string $expression)
+function getRandomOperator(array $operators)
 {
-    return calculate(explode(' ', $expression));
+    $operatorIndex = rand(0, (count($operators) - 1));
+    return $operators[$operatorIndex];
+}
+
+function getQuestion(int $num1, int $num2, string $operator)
+{
+    return "$num1 $operator $num2";
+}
+
+function getAnswer(int $num1, int $num2, string $operator)
+{
+    return calculate($num1, $num2, $operator);
+}
+
+function createGameAttributes()
+{
+    $num1 = rand(0, 10);
+    $num2 = rand(0, 10);
+    $operator = getRandomOperator(OPERATORS);
+
+    $question = getQuestion($num1, $num2, $operator);
+    $answer = getAnswer($num1, $num2, $operator);
+
+    return [
+        'question' => $question,
+        'answer'   => $answer,
+    ];
 }
 
 function run()
 {
     $getGameAttributes = function () {
-        $question = getQuestion();
-        $answer = getAnswer($question);
-    
-        return [
-            'question' => $question,
-            'answer'   => $answer,
-        ];
+        return createGameAttributes();
     };
 
     runGame($getGameAttributes, GAME_DESCRIPTION);
-    return;
 }

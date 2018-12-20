@@ -9,45 +9,47 @@ const GAME_DESCRIPTION = 'What number is missing in the progression?';
 const PROGRESSION_LENGTH = 10;
 const HIDER = '..';
 
-function getProgression()
+function getProgression(int $firstNum, int $step, int $progressionLength)
 {
-    $firstNum = rand(1, 10);
-    $step = rand(2, 10);
-    $lastNum = $firstNum + $step * (PROGRESSION_LENGTH - 1);
+    $lastNum = $firstNum + $step * ($progressionLength - 1);
     $progression = range($firstNum, $lastNum, $step);
 
     return array_combine($progression, $progression);
 }
 
-function hideRandomElement(array $numbers)
+function hideElement(int $index, array $array)
 {
-    $randomIndex = array_rand($numbers, 1);
-    
-    return array_replace($numbers, [$randomIndex => HIDER]);
+    return array_replace($array, [$index => HIDER]);
 }
 
-function getQuestion()
+function getQuestion(array $progression)
 {
-    return hideRandomElement(getProgression());
+    return implode(' ', $progression);
 }
 
-function getAnswer(array $numbers)
+function createGameAttributes()
 {
-    return array_search(HIDER, $numbers);
+    $firstNum = rand(0, 10);
+    $step = rand(0, 10);
+    $progression = getProgression($firstNum, $step, PROGRESSION_LENGTH);
+
+    $hiddenElement = array_rand($progression, 1);
+    $progressionWithHiddenElement = hideElement($hiddenElement, $progression);
+
+    $question = getQuestion($progressionWithHiddenElement);
+    $answer = $hiddenElement;
+
+    return [
+        'question' => $question,
+        'answer'   => $answer,
+    ];
 }
 
 function run()
 {
     $getGameAttributes = function () {
-        $question = getQuestion();
-        $answer = getAnswer($question);
-    
-        return [
-            'question' => implode(' ', $question),
-            'answer'   => $answer,
-        ];
+        return createGameAttributes();
     };
 
     runGame($getGameAttributes, GAME_DESCRIPTION);
-    return;
 }
