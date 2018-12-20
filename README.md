@@ -2,7 +2,8 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/eb7a5ac19bba0963f16d/maintainability)](https://codeclimate.com/github/Melodyn/project-lvl1-s396/maintainability) [![Build Status](https://travis-ci.org/Melodyn/project-lvl1-s396.svg?branch=master)](https://travis-ci.org/Melodyn/project-lvl1-s396)
 
-Первый (из 4х) проект в рамках профессии PHP-программист на [https://ru.hexlet.io/professions/php](Хекслет).
+Первый (из 4х) проект в рамках профессии PHP-программист на [Хекслет](https://ru.hexlet.io/professions/php).
+
 Ещё один шаг на пути к всемогуществу.
 
 ## Установка
