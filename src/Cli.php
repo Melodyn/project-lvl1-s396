@@ -5,17 +5,6 @@ namespace BrainGames\Cli;
 use function \cli\line;
 use function \cli\prompt;
 
-function response($message)
-{
-    line($message);
-    return;
-}
-
-function request($message)
-{
-    return prompt($message);
-}
-
 function run()
 {
     line('Welcome to the Brain Game!');

@@ -2,13 +2,16 @@
 
 namespace BrainGames\Games\Calc;
 
+use function \BrainGames\GameDriver\run as runGame;
+
 const GAME_DESCRIPTION = 'What is the result of the expression?';
+
+const OPERATORS = ['+', '-', '*'];
 
 function getQuestion()
 {
-    $operators = ['+', '-', '*'];
-    $operatorIndex = rand(0, (count($operators) - 1));
-    $operator = $operators[$operatorIndex];
+    $operatorIndex = rand(0, (count(OPERATORS) - 1));
+    $operator = OPERATORS[$operatorIndex];
 
     $num1 = rand(0, 10);
     $num2 = rand(0, 10);
@@ -37,14 +40,23 @@ function calculate(array $expression)
     return $handler($num1, $num2);
 }
 
-function getCorrectAnswer(string $expression)
+function getAnswer(string $expression)
 {
     return calculate(explode(' ', $expression));
 }
 
 function run()
 {
-    \BrainGames\GameDriver\run(function ($handlerName, $data = null) {
-        return ($handlerName === 'getQuestion') ? getQuestion() : getCorrectAnswer($data);
-    }, GAME_DESCRIPTION);
+    $getGameAttributes = function () {
+        $question = getQuestion();
+        $answer = getAnswer($question);
+    
+        return [
+            'question' => $question,
+            'answer'   => $answer,
+        ];
+    };
+
+    runGame($getGameAttributes, GAME_DESCRIPTION);
+    return;
 }
