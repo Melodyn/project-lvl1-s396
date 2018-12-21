@@ -14,7 +14,6 @@ function sayHi($gameDiscription)
 {
     line(HELLO_MESSAGE);
     line($gameDiscription);
-    return;
 }
 
 function getUsername()
@@ -25,7 +24,6 @@ function getUsername()
 function greetUser($userName)
 {
     line("Hello, $userName!");
-    return;
 }
 
 function run(callable $getGameAttributes, string $gameDiscription)
@@ -33,29 +31,19 @@ function run(callable $getGameAttributes, string $gameDiscription)
     sayHi($gameDiscription);
     $userName = getUsername();
     greetUser($userName);
-    $userAnswerIsCorrect = true;
 
     for ($correctAnswersCount = 0; $correctAnswersCount < MAX_CORRECT_ANSWERS_COUNT; $correctAnswersCount += 1) {
         ['question' => $question, 'answer' => $correctAnswer] = $getGameAttributes();
 
         line('Question: ' . $question);
         $userAnswer = prompt('Your answer');
-        $userAnswerIsCorrect = strtolower($userAnswer) === strtolower($correctAnswer);
 
-        $onAnswerMessage = $userAnswerIsCorrect ?
-            'Correct!' :
-            "'{$userAnswer}' is wrong answer ;(. Correct answer was '{$correctAnswer}'.";
-        line($onAnswerMessage);
-
-        if (!$userAnswerIsCorrect) {
-            break;
+        if (strtolower($userAnswer) === strtolower($correctAnswer)) {
+            return "Let's try again, {$userName}!";
         }
+
+        line('Correct!');
     }
 
-    $engGameMessage = $userAnswerIsCorrect ?
-        "Congratulations, {$userName}!" :
-        "Let's try again, {$userName}!";
-
-    line($engGameMessage);
-    return;
+    line("Congratulations, {$userName}!");
 }

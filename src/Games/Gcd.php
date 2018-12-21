@@ -39,5 +39,4 @@ function run()
     };
 
     runGame($getGameAttributes, GAME_DESCRIPTION);
-    return;
 }
