@@ -20,3 +20,4 @@
 * Калькулятор: [calc](https://asciinema.org/a/217590)
 * НОД: [gcd](https://asciinema.org/a/217622)
 * Арифметическая прогрессия: [progression](https://asciinema.org/a/217722)
+* Простые числа: [prime](https://asciinema.org/a/217833)
