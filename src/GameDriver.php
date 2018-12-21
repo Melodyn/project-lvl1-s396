@@ -8,7 +8,7 @@ use function \cli\prompt;
 const HELLO_MESSAGE = 'Welcome to the Brain Game!';
 const NAME_ASK_MESSAGE = 'May I have your name?';
 
-const MAX_CORRECT_ANSWERS_COUNT = 3;
+const LAST_ROUND = 3;
 
 function sayHi($gameDiscription)
 {
@@ -32,14 +32,14 @@ function run(callable $getGameAttributes, string $gameDiscription)
     $userName = getUsername();
     greetUser($userName);
 
-    for ($correctAnswersCount = 0; $correctAnswersCount < MAX_CORRECT_ANSWERS_COUNT; $correctAnswersCount += 1) {
+    for ($round = 1; $round <= LAST_ROUND; $round += 1) {
         ['question' => $question, 'answer' => $correctAnswer] = $getGameAttributes();
 
         line('Question: ' . $question);
         $userAnswer = prompt('Your answer');
 
-        if (strtolower($userAnswer) === strtolower($correctAnswer)) {
-            return "Let's try again, {$userName}!";
+        if (strtolower($userAnswer) !== strtolower($correctAnswer)) {
+            return line("Let's try again, {$userName}!");
         }
 
         line('Correct!');
